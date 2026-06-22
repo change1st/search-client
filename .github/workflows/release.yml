@@ -26,29 +26,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-
-      - name: Setup Python (macOS only, fix electron-builder@22 ENOENT /usr/bin/python)
-        if: matrix.os == 'macos-latest'
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Export PYTHON_PATH (macOS only)
-        if: matrix.os == 'macos-latest'
-        run: |
-          PY=$(which python3)
-          echo "PYTHON_PATH=$PY" >> $GITHUB_ENV
-          echo "PYTHON=$PY" >> $GITHUB_ENV
-          echo "Found python3 at: $PY"
-          # Also create a symlink at /usr/local/bin/python as fallback
-          sudo mkdir -p /usr/local/bin
-          sudo ln -sf "$PY" /usr/local/bin/python
-          # Try to symlink at /usr/bin/python as well (may fail on SIP)
-          sudo ln -sf "$PY" /usr/bin/python 2>/dev/null || echo "Cannot symlink /usr/bin/python (SIP-protected)"
-          ls -la /usr/bin/python /usr/local/bin/python 2>/dev/null || true
+          cache: npm
 
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
 
       - name: Build (macOS)
         if: matrix.os == 'macos-latest'

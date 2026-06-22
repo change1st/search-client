@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>UI 预览 - 科技风主题</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/styles/App.css" />
+    <link rel="stylesheet" href="./src/styles/ResultsPanel.css" />
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/icon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="128x128" href="./assets/icon-128.png" />
+    <link rel="icon" type="image/png" sizes="256x256" href="./assets/icon-256.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="./assets/icon-512.png" />
+  </head>
+  <body>
+    <div class="app-container theme-tech">
+      <header class="app-header">
+        <div class="branding">
+          <img class="app-logo" src="./assets/icon-32.png" alt="Logo" />
+          <h1 class="app-title">search-client</h1>
+        </div>
+        <div class="header-actions">
+          <button class="disconnect-btn">断开连接</button>
+          <button class="connect-btn primary">连接</button>
+        </div>
+      </header>
+      <main class="main-content">
+        <div class="content-layout">
+          <div class="query-panel-container">
+            <div class="query-panel">
+              <div class="query-header">
+                <h2>查询面板</h2>
+                <div class="query-actions">
+                  <button class="format-btn">格式化JSON</button>
+                  <button class="clear-btn">清除查询</button>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="query-input">查询 DSL:</label>
+                <textarea id="query-input" class="query-textarea" rows="10">{
+  "query": { "match_all": {} },
+  "size": 10
+}</textarea>
+              </div>
+              <div class="keyboard-shortcuts">
+                <div class="shortcuts-title">键盘快捷键</div>
+                <div class="shortcut-item"><span>执行查询</span><span class="shortcut-keys">Cmd+Enter</span></div>
+                <div class="shortcut-item"><span>聚焦编辑器</span><span class="shortcut-keys">Cmd+K</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="results-panel-container">
+            <div class="results-panel">
+              <div class="results-header">
+                <h2>查询结果</h2>
+                <div class="results-actions">
+                  <div class="view-mode">
+                    <button class="view-btn active">表格</button>
+                    <button class="view-btn">JSON</button>
+                  </div>
+                  <div class="export-buttons">
+                    <button class="export-btn">导出 JSON</button>
+                    <button class="export-btn">导出 CSV</button>
+                  </div>
+                </div>
+              </div>
+              <div class="table-wrapper">
+                <table class="results-table">
+                  <thead>
+                    <tr>
+                      <th>_index</th>
+                      <th>_id</th>
+                      <th>title</th>
+                      <th>score</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>demo-index</td>
+                      <td>1</td>
+                      <td>智能客服数据</td>
+                      <td>1.0</td>
+                    </tr>
+                    <tr>
+                      <td>demo-index</td>
+                      <td>2</td>
+                      <td>日志采集样例</td>
+                      <td>0.98</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <div class="status-bar">
+        <div class="status-left">
+          <span class="status-indicator connected"></span>
+          <span class="connection-info">已连接 · https://example:9200</span>
+        </div>
+        <div class="status-right">
+          <span class="server-info">Elasticsearch 8.x</span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    (function() {
+      function toast(msg) {
+        const div = document.createElement('div');
+        div.textContent = msg;
+        Object.assign(div.style, {
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          background: 'rgba(0,0,0,0.7)',
+          color: '#fff',
+          padding: '10px 14px',
+          borderRadius: '8px',
+          boxShadow: '0 0 12px rgba(0, 200, 255, 0.5)',
+          zIndex: 9999,
+          fontFamily: 'Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif'
+        });
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 2000);
+      }
+
+      const connectBtn = document.querySelector('.connect-btn');
+      const disconnectBtn = document.querySelector('.disconnect-btn');
+      const formatBtn = document.querySelector('.format-btn');
+      const clearBtn = document.querySelector('.clear-btn');
+      const viewBtns = document.querySelectorAll('.view-btn');
+      const exportBtns = document.querySelectorAll('.export-btn');
+      const statusIndicator = document.querySelector('.status-indicator');
+      const connectionInfo = document.querySelector('.connection-info');
+      const queryInput = document.getElementById('query-input');
+
+      if (connectBtn) {
+        connectBtn.addEventListener('click', () => {
+          toast('模拟：打开连接对话框（静态预览）');
+          statusIndicator && statusIndicator.classList.add('connected');
+          statusIndicator && statusIndicator.classList.remove('disconnected');
+          if (connectionInfo) connectionInfo.textContent = '已连接 · https://example:9200';
+        });
+      }
+
+      if (disconnectBtn) {
+        disconnectBtn.addEventListener('click', () => {
+          toast('模拟：断开连接');
+          statusIndicator && statusIndicator.classList.remove('connected');
+          statusIndicator && statusIndicator.classList.add('disconnected');
+          if (connectionInfo) connectionInfo.textContent = '未连接';
+        });
+      }
+
+      if (formatBtn && queryInput) {
+        formatBtn.addEventListener('click', () => {
+          try {
+            const obj = JSON.parse(queryInput.value);
+            queryInput.value = JSON.stringify(obj, null, 2);
+            toast('JSON 已格式化');
+          } catch (e) {
+            toast('JSON 解析失败：' + e.message);
+          }
+        });
+      }
+
+      if (clearBtn && queryInput) {
+        clearBtn.addEventListener('click', () => {
+          queryInput.value = '';
+          toast('查询已清空');
+        });
+      }
+
+      if (viewBtns && viewBtns.length) {
+        viewBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            viewBtns.forEach((b) => b.classList.remove('active'));
+            btn.classList.add('active');
+            toast('切换视图：' + btn.textContent.trim());
+          });
+        });
+      }
+
+      if (exportBtns && exportBtns.length) {
+        exportBtns.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            toast('模拟导出：' + btn.textContent.trim());
+          });
+        });
+      }
+    })();
+  </script>
+  </html>

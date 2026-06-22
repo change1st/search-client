@@ -1,0 +1,265 @@
+/* 基础容器 —— 与深色弹窗外壳一致 */
+.connection-panel {
+  padding: 0;
+  background: transparent;
+  color: #e5e7eb;
+  border-radius: 0;
+}
+
+/* 标题与状态 */
+.connection-panel .panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.connection-panel .panel-header h2 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.connection-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid transparent;
+}
+.connection-status .status-icon { font-size: 12px; }
+.status-connected     { background: rgba(34,197,94,0.12);  color: #4ade80; border-color: rgba(34,197,94,0.35); }
+.status-connecting    { background: rgba(234,179,8,0.12);  color: #facc15; border-color: rgba(234,179,8,0.35); }
+.status-error         { background: rgba(239,68,68,0.12);  color: #f87171; border-color: rgba(239,68,68,0.35); }
+.status-disconnected  { background: rgba(148,163,184,0.12);color: #cbd5e1; border-color: rgba(148,163,184,0.3); }
+
+/* 视图切换 —— 限定在 ConnectionPanel 内，不污染其它页 */
+.connection-panel .view-tabs { display: flex; gap: 6px; margin-bottom: 14px; }
+.connection-panel .view-tabs .tab-btn {
+  padding: 6px 12px;
+  border: 1px solid #334155;
+  background: transparent;
+  color: #cbd5e1;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.connection-panel .view-tabs .tab-btn:hover { color: #f1f5f9; border-color: #475569; }
+.connection-panel .view-tabs .tab-btn.active {
+  background: rgba(14,165,233,0.12);
+  border-color: rgba(14,165,233,0.6);
+  color: #7dd3fc;
+}
+
+.connection-panel .panel-content { margin-bottom: 12px; }
+
+/* 表单区域 */
+.connection-panel .connection-form { display: flex; flex-direction: column; gap: 12px; }
+.connection-panel .form-group { display: flex; flex-direction: column; gap: 6px; }
+.connection-panel .form-group label { font-size: 12px; color: #94a3b8; }
+.connection-panel .form-group input:not([type="checkbox"]):not([type="radio"]),
+.connection-panel .connection-form select {
+  height: 34px;
+  padding: 6px 10px;
+  background: #0b1220;
+  border: 1px solid #1f2937;
+  border-radius: 6px;
+  font-size: 13px;
+  color: #e5e7eb;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.connection-panel .form-group input:not([type="checkbox"]):not([type="radio"])::placeholder { color: #64748b; }
+.connection-panel .form-group input:not([type="checkbox"]):not([type="radio"]):focus,
+.connection-panel .connection-form select:focus {
+  border-color: rgba(14,165,233,0.6);
+  box-shadow: 0 0 0 3px rgba(14,165,233,0.18);
+}
+.connection-panel .form-group input:not([type="checkbox"]):not([type="radio"]).error { border-color: #ef4444; background: rgba(239,68,68,0.08); }
+
+.connection-panel .connection-form select option { background: #0b1220; color: #e5e7eb; }
+
+.connection-panel .url-input-container { display: flex; }
+
+.connection-panel .auth-section {
+  border-top: 1px solid #1f2937;
+  padding-top: 12px;
+  margin-top: 4px;
+}
+.connection-panel .auth-section .section-title {
+  font-size: 13px;
+  color: #cbd5e1;
+  margin-bottom: 8px;
+}
+
+.connection-panel .password-input-container { display: flex; gap: 8px; align-items: center; }
+.connection-panel .toggle-password-btn {
+  height: 34px;
+  padding: 0 10px;
+  border: 1px solid #1f2937;
+  background: #0b1220;
+  color: #cbd5e1;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.connection-panel .toggle-password-btn:hover { border-color: #334155; color: #f1f5f9; }
+
+/* 证书选项 */
+.connection-panel .checkbox-row { display: flex; align-items: center; gap: 8px; }
+.connection-panel .checkbox-row input[type="checkbox"] { accent-color: #0ea5e9; }
+.connection-panel .checkbox-help { color: #94a3b8; font-size: 12px; }
+
+/* 操作按钮 */
+.connection-panel .connection-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+  justify-content: flex-end;
+}
+.connection-panel .connection-actions button {
+  height: 32px;
+  padding: 0 16px;
+  border-radius: 6px;
+  border: 1px solid #334155;
+  background: transparent;
+  color: #cbd5e1;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+.connection-panel .connection-actions button:hover:not(:disabled) {
+  color: #f1f5f9;
+  border-color: #475569;
+}
+.connection-panel .connection-actions .disconnect-btn {
+  color: #fca5a5;
+  border-color: rgba(239,68,68,0.5);
+}
+.connection-panel .connection-actions .disconnect-btn:hover:not(:disabled) {
+  background: rgba(239,68,68,0.12);
+  color: #fecaca;
+  border-color: #ef4444;
+}
+.connection-panel .connection-actions .connect-btn,
+.connection-panel .connection-actions .primary {
+  background: #0ea5e9;
+  color: #0a0f1e;
+  border-color: #0ea5e9;
+  font-weight: 600;
+  padding: 0 22px;
+}
+.connection-panel .connection-actions .connect-btn:hover:not(:disabled),
+.connection-panel .connection-actions .primary:hover:not(:disabled) {
+  background: #38bdf8;
+  border-color: #38bdf8;
+  color: #0a0f1e;
+}
+.connection-panel .connection-actions button:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.connection-panel .error-message {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: rgba(239,68,68,0.1);
+  color: #fca5a5;
+  border: 1px solid rgba(239,68,68,0.4);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+.connection-panel .info-message {
+  margin-top: 8px;
+  padding: 8px 10px;
+  background: rgba(14,165,233,0.1);
+  color: #7dd3fc;
+  border: 1px solid rgba(14,165,233,0.35);
+  border-radius: 6px;
+  font-size: 13px;
+}
+
+/* 空状态 */
+.connection-panel .empty-saved-connections { text-align: center; padding: 24px 12px; color: #94a3b8; }
+.connection-panel .empty-icon { font-size: 24px; margin-bottom: 8px; }
+.connection-panel .add-connection-btn {
+  margin-top: 10px;
+  padding: 6px 14px;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  background: transparent;
+  color: #cbd5e1;
+  cursor: pointer;
+}
+.connection-panel .add-connection-btn:hover { color: #f1f5f9; border-color: #475569; }
+
+/* 已保存连接列表 */
+.connection-panel .saved-connections-list { display: flex; flex-direction: column; gap: 12px; }
+.connection-panel .list-header { display: flex; align-items: center; justify-content: space-between; }
+.connection-panel .connection-count {
+  display: inline-block;
+  min-width: 24px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(148,163,184,0.15);
+  color: #cbd5e1;
+  text-align: center;
+  font-size: 12px;
+}
+.connection-panel .connections-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.connection-panel .connection-card {
+  border: 1px solid #1f2937;
+  background: #0b1220;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.connection-panel .connection-card.selected {
+  border-color: rgba(14,165,233,0.6);
+  box-shadow: 0 0 0 2px rgba(14,165,233,0.15);
+}
+.connection-panel .connection-info { display: flex; flex-direction: column; gap: 4px; }
+.connection-panel .connection-name { font-weight: 600; color: #f1f5f9; font-size: 13px; }
+.connection-panel .connection-url { font-family: Menlo, Monaco, Consolas, monospace; color: #94a3b8; font-size: 12px; word-break: break-all; }
+.connection-panel .connection-username { color: #94a3b8; font-size: 12px; }
+
+.connection-panel .connection-card-actions { display: flex; gap: 8px; }
+.connection-panel .load-btn,
+.connection-panel .delete-btn {
+  padding: 6px 10px;
+  border: 1px solid #334155;
+  background: transparent;
+  color: #cbd5e1;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.connection-panel .load-btn:hover { color: #f1f5f9; border-color: #475569; }
+.connection-panel .delete-btn { color: #fca5a5; border-color: rgba(239,68,68,0.4); }
+.connection-panel .delete-btn:hover { background: rgba(239,68,68,0.12); border-color: #ef4444; }
+
+/* 帮助 */
+.connection-panel .connection-help { margin-top: 10px; }
+.connection-panel .connection-help summary { cursor: pointer; color: #cbd5e1; font-size: 13px; }
+.connection-panel .connection-help summary:hover { color: #f1f5f9; }
+.connection-panel .help-content {
+  margin-top: 8px;
+  padding: 10px 12px;
+  border: 1px solid #1f2937;
+  background: #0b1220;
+  border-radius: 6px;
+  color: #cbd5e1;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.connection-panel .help-content code {
+  background: rgba(148,163,184,0.12);
+  padding: 1px 4px;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #7dd3fc;
+}

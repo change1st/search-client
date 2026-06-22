@@ -1,0 +1,92 @@
+.github/workflows/build-check.yml
+  s_035c16974092ee::t_fba6192ae27c4f 26 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a39010ae5411729e00268a9","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Single":26}]}]}
+.github/workflows/release.yml
+  s_035c16974092ee::t_807a656c675e9a 31 gitai:{"mixed_line_ranges":[],"operations":[{"operation_id":"6a3900f2e5411729e00268a6","tool_type":"agent","tool_id":"Edit","line_ranges":[{"Single":31}]}]}
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "1b683a01a951542cb00363410b4a6ee742d8b1d0",
+  "prompts": {},
+  "sessions": {
+    "s_035c16974092ee": {
+      "agent_id": {
+        "tool": "trae",
+        "id": "6a38ea9ee5411729e00266d7",
+        "model": "openrouter-2o__dev"
+      },
+      "human_author": "thcode <17228757+thhhcode@user.noreply.gitee.com>"
+    }
+  },
+  "attestation_metadata": {
+    ".github/workflows/build-check.yml": [
+      {
+        "hash": "s_035c16974092ee::t_fba6192ae27c4f",
+        "line_ranges": [
+          {
+            "Single": 26
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a39010ae5411729e00268a9",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Single": 26
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    ".github/workflows/release.yml": [
+      {
+        "hash": "s_035c16974092ee::t_807a656c675e9a",
+        "line_ranges": [
+          {
+            "Single": 31
+          }
+        ],
+        "mixed_line_ranges": [],
+        "operations": [
+          {
+            "operation_id": "6a3900f2e5411729e00268a6",
+            "tool_type": "agent",
+            "tool_id": "Edit",
+            "line_ranges": [
+              {
+                "Single": 31
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "remote_transcripts": {
+    "s_035c16974092ee": {
+      "tool": "trae",
+      "conversation_id": "6a38ea9ee5411729e00266d7",
+      "session_id": "6a38ea9ee5411729e00266d7",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_035c16974092ee::t_807a656c675e9a": {
+      "tool": "trae",
+      "conversation_id": "6a38ea9ee5411729e00266d7",
+      "session_id": "6a38ea9ee5411729e00266d7",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    },
+    "s_035c16974092ee::t_fba6192ae27c4f": {
+      "tool": "trae",
+      "conversation_id": "6a38ea9ee5411729e00266d7",
+      "session_id": "6a38ea9ee5411729e00266d7",
+      "status": "remote_only",
+      "message": "Remote transcript resolution is not implemented yet for TRAE prompts."
+    }
+  }
+}

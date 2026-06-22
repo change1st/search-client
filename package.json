@@ -1,14 +1,17 @@
 {
   "name": "search-client",
   "version": "1.0.13",
-  "description": "ES/OpenSearch查询工具 - Mac客户端",
+  "description": "ES/OpenSearch 查询工具 - 跨平台桌面客户端 (macOS / Windows / Linux)",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "dev": "electron .",
     "sync-icons": "true",
     "build": "npm run sync-icons && electron-builder",
-    "package-mac": "npm run sync-icons && electron-builder --mac"
+    "package-mac": "npm run sync-icons && electron-builder --mac",
+    "package-win": "npm run sync-icons && electron-builder --win",
+    "package-linux": "npm run sync-icons && electron-builder --linux",
+    "package-all": "npm run sync-icons && electron-builder -mwl"
   },
   "keywords": [
     "elasticsearch",
@@ -18,7 +21,15 @@
     "query",
     "search"
   ],
-  "author": "",
+  "author": {
+    "name": "tianhui",
+    "email": "tianhui@users.noreply.gitee.com"
+  },
+  "homepage": "https://gitee.com/thhhcode/search-client",
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/thhhcode/search-client.git"
+  },
   "license": "MIT",
   "build": {
     "appId": "com.esopensearch.client",
@@ -26,9 +37,58 @@
     "icon": "assets/icon.icns",
     "mac": {
       "category": "public.app-category.developer-tools",
-      "target": "dmg",
-      "icon": "assets/icon.icns"
+      "icon": "assets/icon.icns",
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "zip",
+          "arch": ["x64", "arm64"]
+        }
+      ]
     },
+    "win": {
+      "icon": "assets/icon-512.png",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64", "ia32"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "artifactName": "${name}-${version}-${os}-${arch}-setup.${ext}"
+    },
+    "linux": {
+      "icon": "assets/icon-512.png",
+      "category": "Development",
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "deb",
+          "arch": ["x64", "arm64"]
+        },
+        {
+          "target": "tar.gz",
+          "arch": ["x64", "arm64"]
+        }
+      ]
+    },
+    "artifactName": "${name}-${version}-${os}-${arch}.${ext}",
     "files": [
       "**/*",
       "!dist/**/*",

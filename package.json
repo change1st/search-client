@@ -7,11 +7,11 @@
     "start": "electron .",
     "dev": "electron .",
     "sync-icons": "true",
-    "build": "npm run sync-icons && electron-builder",
-    "package-mac": "npm run sync-icons && electron-builder --mac",
-    "package-win": "npm run sync-icons && electron-builder --win",
-    "package-linux": "npm run sync-icons && electron-builder --linux",
-    "package-all": "npm run sync-icons && electron-builder -mwl"
+    "build": "npm run sync-icons && electron-builder --publish=never",
+    "package-mac": "npm run sync-icons && electron-builder --mac --publish=never",
+    "package-win": "npm run sync-icons && electron-builder --win --publish=never",
+    "package-linux": "npm run sync-icons && electron-builder --linux --publish=never",
+    "package-all": "npm run sync-icons && electron-builder -mwl --publish=never"
   },
   "keywords": [
     "elasticsearch",
